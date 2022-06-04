@@ -23,6 +23,14 @@ class Person
     @sum = 0
   end
 
+  def show_card(&block)
+    @cards.each { |card| block.call(card) }
+  end
+
+  protected
+
+  attr_writer :sum
+
   def calculate_sum_points
     @sum = 0
     ace = false
@@ -40,7 +48,4 @@ class Person
     card.to_i
   end
 
-  def show_card(&block)
-    @cards.each { |card| block.call(card) }
-  end
 end
