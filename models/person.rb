@@ -13,6 +13,10 @@ class Person
     calculate_sum_points
   end
 
+  def add_bank(value)
+    @bank += value
+  end
+
   def place_bet
     @bank -= 10
     new_game
