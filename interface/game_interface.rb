@@ -75,4 +75,9 @@ class GameInterface
     @dealer.move? ? @dealer.add_card(@deck) : (puts "\nДилер пропускает ход")
     display_cards
   end
+
+  def add_card
+    @player.add_card(@deck)
+    display_cards
+  end
 end
