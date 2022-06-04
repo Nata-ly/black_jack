@@ -27,4 +27,16 @@ class GameInterface
     end
     true
   end
+
+  def new_game
+    @deck = DeckOfCards.new
+    card_distribution
+  end
+
+  def card_distribution
+    [@dealer, @player].each do |person|
+      person.place_bet
+      2.times { person.add_card(@deck) }
+    end
+  end
 end
