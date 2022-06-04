@@ -15,6 +15,12 @@ class Person
 
   def place_bet
     @bank -= 10
+    new_game
+  end
+
+  def new_game
+    @cards = []
+    @sum = 0
   end
 
   def calculate_sum_points
