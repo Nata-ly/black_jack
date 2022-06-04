@@ -41,7 +41,8 @@ class GameInterface
     loop do
       options.each { |option, value| puts "#{option} - #{value[:description]}" }
       action_number = gets.chomp.to_i
-      next unless options.dig(action_number)
+      next unless options[action_number]
+
       options[action_number][:action].call(self)
       options.delete(action_number)
       break if @dealer.open_card == true
