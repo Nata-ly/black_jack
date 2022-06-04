@@ -15,4 +15,16 @@ class GameInterface
       new_game if action == '1'
     end
   end
+
+  def money?
+    if @player.bank < 10
+      puts 'У вас нет больше денег )'
+      return false
+    end
+    if @dealer.bank < 10
+      puts 'У нас закончились деньги ('
+      return false
+    end
+    true
+  end
 end
