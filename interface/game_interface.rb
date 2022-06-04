@@ -2,9 +2,9 @@
 
 class GameInterface
   ACTION_OPTIONS = {
-    1 => { description: 'Пропустить', action: -> { skip } },
-    2 => { description: 'Добавить карту', action: -> { add_card } },
-    3 => { description: 'Открыть карты',  action: -> { open_cards } }
+    1 => { description: 'Пропустить',     action: ->(context) { context.skip } },
+    2 => { description: 'Добавить карту', action: ->(context) { context.add_card } },
+    3 => { description: 'Открыть карты',  action: ->(context) { context.open_cards } }
   }.freeze
 
   def start
@@ -37,12 +37,13 @@ class GameInterface
   def new_game
     @deck = DeckOfCards.new
     card_distribution
-    options = ACTION_OPTIONS
+    options = ACTION_OPTIONS.dup
     loop do
       options.each { |option, value| puts "#{option} - #{value[:description]}" }
-      action = gets.chomp.to_i
-      ACTION_OPTIONS[action].call
-      break if action == ACTION_OPTIONS[3].keys
+      action_number = gets.chomp.to_i
+      options[action_number][:action].call(self)
+      options.delete(action_number)
+      break if @dealer.open_card == true
 
       move_dealer
     end
@@ -62,5 +63,9 @@ class GameInterface
     puts "\n#{@player.name}:"
     @player.show_card { |card| print "#{card} " }
     puts "\nСумма очков: #{@player.sum}"
+  end
+
+  def skip
+    puts 'Ход перешел к дилеру'
   end
 end
