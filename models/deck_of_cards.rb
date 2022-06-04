@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DeckOfCards
-  SUITS = %i[♣️ ♤ ♥️ ♦️].freeze
+  SUITS = %i[♣️ ♠️ ♥️ ♦️].freeze
   CARDS_VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'K', 'D', 'V', 'T'].freeze
 
   attr_reader :deck
