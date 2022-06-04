@@ -19,4 +19,8 @@ class DeckOfCards
     end
     @deck
   end
+
+  def draw_card
+    @deck.delete_at(0)
+  end
 end
