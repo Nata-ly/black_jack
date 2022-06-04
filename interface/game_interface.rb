@@ -68,4 +68,9 @@ class GameInterface
   def skip
     puts 'Ход перешел к дилеру'
   end
+
+  def move_dealer
+    @dealer.move? ? @dealer.add_card : (puts "\nДилер пропускает ход")
+    display_cards
+  end
 end

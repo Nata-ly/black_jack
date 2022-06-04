@@ -10,6 +10,10 @@ class Dealer < Person
     super
   end
 
+  def move?
+    @sum >= 17
+  end
+
   def new_game
     @open_card = false
     super
