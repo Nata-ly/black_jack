@@ -7,6 +7,8 @@ class GameInterface
     3 => { description: 'Открыть карты',  action: ->(context) { context.open_cards } }
   }.freeze
 
+  WINNER_POINTS = 21
+
   def start
     puts 'Как вас зовут?'
     @player = Player.new(gets.chomp)
@@ -62,6 +64,7 @@ class GameInterface
   def display_cards
     puts 'Диллер:'
     @dealer.show_card { |card| @dealer.open_card ? (print "#{card} ") : (print '* ') }
+    puts "\nСумма очков: #{@dealer.sum}" if @dealer.open_card
     puts "\n#{@player.name}:"
     @player.show_card { |card| print "#{card} " }
     puts "\nСумма очков: #{@player.sum}"
@@ -80,5 +83,28 @@ class GameInterface
   def add_card
     @player.add_card(@deck)
     display_cards
+  end
+
+  def open_cards
+    @dealer.open_card = true
+    display_cards
+    puts 'Подсчет очков'
+    sleep 3
+    pick_winner
+  end
+
+  def pick_winner
+    if (@dealer.sum == @player.sum) || (@dealer.sum > WINNER_POINTS && @player.sum > WINNER_POINTS)
+      puts 'Ничья'
+      @player.add_bank(10)
+      @dealer.add_bank(10)
+    elsif (@dealer.sum + 1..WINNER_POINTS).include?(@player.sum) || @dealer.sum > WINNER_POINTS
+      puts 'Вы победили'
+      @player.add_bank(20)
+    else
+      puts 'Вы проиграли'
+      @dealer.add_bank(20)
+    end
+    puts "Банк #{@player.bank}"
   end
 end
