@@ -10,4 +10,13 @@ class DeckOfCards
     @deck = create_deck.shuffle
   end
 
+  def create_deck
+    @deck = []
+    CARDS_VALUES.each do |value|
+      SUITS.each do |suit|
+        @deck << "#{value} #{suit}"
+      end
+    end
+    @deck
+  end
 end
