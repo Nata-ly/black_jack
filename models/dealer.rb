@@ -2,7 +2,7 @@
 
 class Dealer < Person
   attr_reader :name
-  attr_reader :open_card
+  attr_accessor :open_card
 
   def initialize
     @name = 'Дилер'
@@ -12,7 +12,7 @@ class Dealer < Person
 
   def move?
     return false if @cards.size == 3
-    @sum >= 17
+    @sum <= 17
   end
 
   def new_game
