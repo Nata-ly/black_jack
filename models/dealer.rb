@@ -11,6 +11,7 @@ class Dealer < Person
   end
 
   def move?
+    return false if @cards.size == 3
     @sum >= 17
   end
 
