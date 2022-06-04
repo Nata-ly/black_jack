@@ -5,5 +5,10 @@ class Person
 
   def initialize
     @bank = 100
+    @cards = []
+  end
+
+  def add_card(deck)
+    @cards << deck.draw_card
   end
 end
