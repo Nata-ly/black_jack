@@ -16,7 +16,7 @@ class GameInterface
     loop do
       break unless money?
 
-      puts "\nСыграем еще? 1 - да, 0 - нет"
+      puts "\nСыграем? 1 - да, 0 - нет"
       action = gets.chomp
       break if action == '0'
 
