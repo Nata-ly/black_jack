@@ -13,6 +13,10 @@ class Person
     calculate_sum_points
   end
 
+  def place_bet
+    @bank -= 10
+  end
+
   def calculate_sum_points
     @sum = 0
     ace = false
