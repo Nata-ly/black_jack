@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
 class DeckOfCards
+  SUITS = %i[♣️ ♤ ♥️ ♦️].freeze
+  CARDS_VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'K', 'D', 'V', 'T']
+
+  attr_reader :deck
+
+  def initialize
+    @deck = create_deck.shuffle
+  end
 
 end
