@@ -39,4 +39,8 @@ class Person
     return 1 if card == 'T'
     card.to_i
   end
+
+  def show_card(&block)
+    @cards.each { |card| block.call(card) }
+  end
 end

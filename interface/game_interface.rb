@@ -8,7 +8,7 @@ class GameInterface
     loop do
       break unless money?
 
-      puts 'Сыграем еще? 1 - да, 0 - нет'
+      puts "\nСыграем еще? 1 - да, 0 - нет"
       action = gets.chomp
       break if action == '0'
 
@@ -38,5 +38,14 @@ class GameInterface
       person.place_bet
       2.times { person.add_card(@deck) }
     end
+    display_cards
+  end
+
+  def display_cards
+    puts 'Диллер:'
+    @dealer.show_card { |card| @dealer.open_card ? (print "#{card} ") : (print '* ') }
+    puts "\n#{@player.name}:"
+    @player.show_card { |card| print "#{card} " }
+    puts "\nСумма очков: #{@player.sum}"
   end
 end
