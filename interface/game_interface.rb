@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class GameInterface
+  ACTION_OPTIONS = {
+    1 => { description: 'Пропустить', action: -> { skip } },
+    2 => { description: 'Добавить карту', action: -> { add_card } },
+    3 => { description: 'Открыть карты',  action: -> { open_cards } }
+  }.freeze
+
   def start
     puts 'Как вас зовут?'
     @player = Player.new(gets.chomp)
@@ -31,6 +37,15 @@ class GameInterface
   def new_game
     @deck = DeckOfCards.new
     card_distribution
+    options = ACTION_OPTIONS
+    loop do
+      options.each { |option, value| puts "#{option} - #{value[:description]}" }
+      action = gets.chomp.to_i
+      ACTION_OPTIONS[action].call
+      break if action == ACTION_OPTIONS[3].keys
+
+      move_dealer
+    end
   end
 
   def card_distribution
