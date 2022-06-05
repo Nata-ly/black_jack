@@ -14,7 +14,7 @@ class DeckOfCards
     @deck = []
     CARDS_VALUES.each do |value|
       SUITS.each do |suit|
-        @deck << "#{value} #{suit}"
+        @deck << Card.new("#{value} #{suit}")
       end
     end
     @deck
